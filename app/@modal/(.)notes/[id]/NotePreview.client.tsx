@@ -7,7 +7,7 @@ interface Props {
     children: React.ReactNode
 }
 
-export default function ModalWrapper({ children }: Props) {
+export default function NotePreview({ children }: Props) {
     const router = useRouter();
 
     return (
