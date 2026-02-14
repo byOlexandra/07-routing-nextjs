@@ -2,7 +2,7 @@ import css from "./NoteForm.module.css";
 import { Formik, type FormikHelpers, Field, ErrorMessage, Form } from "formik";
 import { createNote } from "@/lib/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { CreateNoteInForm } from "@/lib/api";
+import { CreateNoteInForm } from "@/types/note";
 import * as Yup from "yup";
 
 interface NoteFormProps {
