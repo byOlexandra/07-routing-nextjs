@@ -13,5 +13,3 @@ export interface FetchNotesResponse {
 }
 
 export type CreateNoteInForm = Omit<Note, "id" | "createdAt" | "updatedAt">;
-
-// export type NoteTags = 'Work' | 'Personal' | 'Meeting' | 'Shopping' | 'Todo';
