@@ -6,3 +6,12 @@ export interface Note {
     updatedAt: string,
     tag: string
 }
+
+export interface FetchNotesResponse {
+    notes: Note[];
+    totalPages: number;
+}
+
+export type CreateNoteInForm = Omit<Note, "id" | "createdAt" | "updatedAt">;
+
+// export type NoteTags = 'Work' | 'Personal' | 'Meeting' | 'Shopping' | 'Todo';
