@@ -1,6 +1,5 @@
 'use client';
 
-import { Note } from '@/types/note';
 import SearchBox from "@/components/SearchBox/SearchBox";
 import css from "./Notes.client.module.css";
 import { useState } from "react";
