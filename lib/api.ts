@@ -6,12 +6,14 @@ axios.defaults.baseURL = "https://notehub-public.goit.study/api";
 export async function fetchNotes(
     query: string,
     page: number,
+    tag?: string
 ): Promise<FetchNotesResponse> {
     try {
         const { data } = await axios.get<FetchNotesResponse>("/notes", {
             params: {
                 search: query,
                 page: page,
+                tag: tag === 'all' ? undefined : tag
             },
             headers: {
                 Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
@@ -65,13 +67,13 @@ export async function deleteNote(id: string): Promise<Note> {
     }
 }
 
-export async function getNotesByTag(tag?: string) {
-    const { data } = await axios.get<FetchNotesResponse>('/notes', {
-        params: { tag },
-        headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
-        }
-    })
-    console.log(data)
-    return data
-}
+// export async function getNotesByTag(tag?: string) {
+//     const { data } = await axios.get<FetchNotesResponse>('/notes', {
+//         params: { tag },
+//         headers: {
+//             Authorization: `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+//         }
+//     })
+//     console.log(data)
+//     return data
+// }
