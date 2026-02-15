@@ -12,15 +12,13 @@ export default async function Notes({ params }: Props) {
     const queryClient = new QueryClient();
 
     await queryClient.prefetchQuery({
-        queryKey: ["notes", { searchQuery: '' }, { currentPage: 1 }],
+        queryKey: ["notes", '', 1, tag],
         queryFn: () => fetchNotes('', 1, tag),
     });
 
-    const data = await fetchNotes('', 1, tag);
-
     return (
         <HydrationBoundary state={dehydrate(queryClient)}>
-            <NotesClient notes={data.notes} activeTag={tag} />
+            <NotesClient activeTag={tag} />
         </HydrationBoundary>
     );
 }

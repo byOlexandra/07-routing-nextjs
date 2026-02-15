@@ -14,11 +14,10 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { fetchNotes } from "@/lib/api";
 
 interface NotesClientProps {
-    notes: Note[];
     activeTag: string | undefined,
 }
 
-export default function NotesClient({ notes: initialNotes, activeTag }: NotesClientProps) {
+export default function NotesClient({ activeTag }: NotesClientProps) {
     const [searchQuery, setSearchQuery] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const debouncedSetSearchQuery = useDebouncedCallback((value: string) => {
@@ -35,9 +34,6 @@ export default function NotesClient({ notes: initialNotes, activeTag }: NotesCli
         queryFn: () => fetchNotes(searchQuery, currentPage, activeTag),
         refetchOnMount: false,
         placeholderData: keepPreviousData,
-        initialData: (searchQuery === "" && currentPage === 1)
-            ? { notes: initialNotes, totalPages: 1 }
-            : undefined,
         retry: false,
     })
 
@@ -45,7 +41,7 @@ export default function NotesClient({ notes: initialNotes, activeTag }: NotesCli
         throw error
     }
 
-    const displayNotes = data?.notes || initialNotes;
+    const displayNotes = data?.notes || [];
     const totalPages = data?.totalPages || 0;
 
     return (
